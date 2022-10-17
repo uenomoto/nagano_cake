@@ -1,0 +1,2 @@
+class OrderedGood < ApplicationRecord
+end
