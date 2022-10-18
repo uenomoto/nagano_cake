@@ -19,10 +19,10 @@ Rails.application.routes.draw do
     get 'items/index'
     get 'items/show'
   end
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
-  end
+  
+    get root to: 'public/homes#top'
+    get '/about' => 'public/homes#about',as: 'about'
+  
   namespace :admin do
     get 'orders/show'
   end
@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     get 'items/edit'
   end
   namespace :admin do
-    get 'homes/top'
+    get root to: 'homes#top'
   end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"

@@ -9,7 +9,9 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <header>
+    <%= link_to "管理者ログイン", new_admin_session_path %>
+  </header>
   <body>
     <%= yield %>
   </body>
