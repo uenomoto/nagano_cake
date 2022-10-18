@@ -1,45 +1,47 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
-  end
-  namespace :public do
-    get 'orders/new'
-    get 'orders/index'
-    get 'orders/show'
-  end
-  namespace :public do
-    get 'cart_items/index'
-  end
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  namespace :public do
-    get 'items/index'
-    get 'items/show'
-  end
+  
+    get 'addresses' => 'public/addresses#index',as: 'addresses'
+    get 'addresses/:id/edit' => 'public/addresses#edit',as: 'edit_addresses'
+    post 'addresses' => 'public/addresses#create'
+    patch 'addresses/:id' => 'public/addresses#update'
+    delete 'addresses/:id' => 'public/addresses#destroy'
+  
+    get 'orders/new' => 'public/orders#new',as: 'new_order'
+    post 'orders/confirm' => 'public/orders#confirm'
+    get 'orders/complete' => 'public/orders#complete'
+    get 'orders' => 'public/orders#index',as: 'orders'
+    post 'orders' => 'public/orders#create'
+    get 'orders/:id' => 'public/orders#show',as: 'order'
+  
+    get 'cart_items' => 'public/cart_items#index',as: 'cart_items'
+    patch 'cart_items/:id' => 'public/cart_items#update'
+    delete 'cart_items/:id' => 'public/cart_items#destroy'
+    delete 'cart_items/destroy_all' => 'public/cart_items#destroy_all'
+    post 'cart_items' => 'public/cart_items#create'
+    
+    get 'customers/my_page' => 'public/customers#show',as: 'my_page'
+    get 'customers/information/edit' => 'public/customers#edit',as: 'edit_customers'
+    patch 'customers/information' => 'public/customers#update'
+    get 'customers/unsubscribe' => 'public/customers#unsubscribe'
+    patch 'customers/withdraw' => 'public/customers#withdraw'
+  
+    get 'items' => 'public/items#index',as: 'items' 
+    get 'items/:id' => 'public/items#show',as: 'item'
   
     get root to: 'public/homes#top'
     get '/about' => 'public/homes#about',as: 'about'
   
   namespace :admin do
-    get 'orders/show'
+    resources :orders, only: [:show, :update]
   end
   namespace :admin do
-    get 'custmers/index'
-    get 'custmers/show'
-    get 'custmers/edit'
+    resources :customers, only: [:index, :show, :edit, :update]
   end
   namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
+    resources :genres, only: [:index, :create, :edit, :update]
   end
   namespace :admin do
-    get 'items/index'
-    get 'items/new'
-    get 'items/show'
-    get 'items/edit'
+    resources :items
   end
   namespace :admin do
     get root to: 'homes#top'
