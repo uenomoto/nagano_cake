@@ -4,32 +4,57 @@
 
 <table>
   <tr>
-    <label for="item_image">商品画像</label>
-    <%= f.file_field :image, accept: "image/*" %>
+    <div class="image">
+      <th><label for="item_image">商品画像</label></th>
+      <td><%= f.file_field :image, accept: "image/*" %></td>
+    </div>
   </tr>
+  
   <tr>
-    <label for="name">商品名</label>
-    <%= f.text_field :name, id:"name" %>
+    <div class="name">
+      <th><label for="name">商品名</label></th>
+      <td><%= f.text_field :name, id:"name" %></td>
+    </div>
   </tr>
+  
   <tr>
-    <label for="introduction">商品説明</label>
-    <%= f.text_area :introduction, size: "20x5", id:"introduction" %>
+    <div class="introduction">
+      <th><label for="introduction">商品説明</label></th>
+      <td><%= f.text_area :introduction, size: "20x5", id:"introduction" %></td>
+    </div>
   </tr>
+  
   <tr>
-    <label for="genre">ジャンル</label>
-    <%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "--選択してください--" %>
+    <div class="genre">
+      <th><label for="genre">ジャンル</label></th>
+      <td><%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "--選択してください--" %></td>
+    </div>
   </tr>
+  
   <tr>
-    <label for="price">税抜価格</label>
-    <%= f.text_field :price %>円
+    <div class="price">
+      <th><label for="price">税抜価格</label></th>
+      <td><%= f.text_field :price %>円</td>
+    </div>
   </tr>
+  
   <tr>
-    <label for="is_active">販売ステータス</label>
-    <%= f.radio_button :is_active, true, checked: true %>
-    <label for="is_active">販売中</label>
-    <%= f.radio_button :is_active, false %>
-    <label for="is_active">販売停止中</label>
+    <div class="is_active">
+      <th><label for="is_active">販売ステータス</label></th>
+      <td><%= f.radio_button :is_active, true, checked: true %>
+      <label for="is_active">販売中</label>
+      <%= f.radio_button :is_active, false %>
+      <label for="is_active">販売停止中</label>
+      </td>
+    </div>
   </tr>
-  <tr><%= f.submit "変更を保存" %></tr>
+  
+  <tr>
+    <div class="submit">
+      <th></th>
+      <td><%= f.submit "変更を保存" %></td>
+    </div>
+  </tr>
+  
   <% end %>
 </table>

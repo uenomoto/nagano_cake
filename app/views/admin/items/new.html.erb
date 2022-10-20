@@ -2,29 +2,43 @@
 
 <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
 
-<label for="item_image">商品画像</label>
-<%= f.file_field :image, accept: "image/*" %>
-</br>
-<label for="item_name">商品名</label>
-<%= f.text_field :name, placeholder:"商品名" %>
-</br>
-<label for="introduction">商品説明</label>
-<%= f.text_area :introduction, size: "20x5", placeholder:"ここに説明文を記述します" %>
-</br>
-<label for="genre">ジャンル</label>
-<%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "--選択してください--" %>
-</br>
-<label for="price">税抜価格</label>
-<%= f.text_field :price, placeholder:"1000" %>円
-
-</br>
-
-<label for="is_active">販売ステータス</label>
-<%= f.radio_button :is_active, true, checked: true %>
-<label for="is_active">販売中</label>
-<%= f.radio_button :is_active, false %>
-<label for="is_active">販売停止中</label>
-</br>
-<%= f.submit "新規登録" %>
-
+<table>
+  <tr>
+   <th><label for="item_image">商品画像</label></th>
+   <td><%= f.file_field :image, accept: "image/*" %></td>
+  </tr>
+  
+  <tr>
+   <th><label for="item_name">商品名</label></th>
+   <td><%= f.text_field :name, placeholder:"商品名" %></td>
+  </tr>
+  
+  <tr>
+   <th><label for="introduction">商品説明</label></th>
+   <td><%= f.text_area :introduction, size: "20x5", placeholder:"ここに説明文を記述します" %></td>
+  </tr>
+  
+  <tr>
+   <th><label for="genre">ジャンル</label></th>
+   <td><%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "--選択してください--" %></td>
+  </tr>
+  
+  <tr>
+   <th><label for="price">税抜価格</label></th>
+   <td><%= f.text_field :price, placeholder:"1000" %>円</td>
+  </tr>
+  
+  <tr>
+    <th><label for="is_active">販売ステータス</label></th>
+    <td><%= f.radio_button :is_active, true, checked: true %>
+      <label for="is_active">販売中</label>
+      <%= f.radio_button :is_active, false %>
+      <label for="is_active">販売停止中</label>
+    </td>
+  </tr>
+  
+  <tr>
+    <th><%= f.submit "新規登録" %></th>
+  </tr>
 <% end %>
+</table>
