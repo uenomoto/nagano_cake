@@ -1,6 +1,9 @@
-<h1>顧客一覧画面</h1>
+<div class="container">
+<h2 class="col-md-5  my-3">会員一覧</h2>
 
-<table>
+<div class="row d-fiex justify-content-center">
+  
+ <table class="table">
   <thead>
     <tr>
       <th>会員ID</th>
@@ -10,8 +13,27 @@
       <th colsapn="4"></th>
     </tr>
   </thead>
+  
   <tbody>
-    <% @customers.each do |customers| %>
+    <% @customers.each do |customer| %>
+    <tr>
+      <td class="info col-xs-1"><%= customer.id %></td>
+      <td class="text-left"><%= link_to admin_customer_path(customer) do %>
+         <%= customer.last_name %><%= customer.first_name %>
+        <% end %>
+      </td>
+      <td><%= customer.email %></td>
+      <td><% if customer.is_deleted == true %>
+          <p>退会</p>
+        <% else %>
+          <p class="text-success">有効</p>
+        <% end %>
+      </td>
+    </tr>
     <% end %>
-  </tbody>
-</table>
+    
+   </tbody>
+  </table>
+ </div>
+ <%= paginate(@customers) %>
+</div>
