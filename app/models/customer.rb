@@ -16,7 +16,6 @@ has_many:addresses, dependent: :destroy
   validates :postal_code, presence: true
   validates :address, presence: true
   validates :telephone_number, presence: true
-  validates :is_deleted, presence: true
   validates :email, uniqueness: true, presence: true
   
 end

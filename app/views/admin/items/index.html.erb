@@ -1,12 +1,20 @@
-<h2>商品一覧</h2>
-
-<%= link_to new_admin_item_path do %>
-追加
-<% end %>
-
-<table>
+<div class="container">
+   <div class="row">
+    <div class="col-sm-8 px-sm-0 offset-sm-1">
+     <h5 class="my-5 bg-light">商品一覧</h5>
+   </div>
+    <div class="col-sm-2 px-sm-0 text-right mt-5">
+      <%= link_to new_admin_item_path,class: "btn btn btn-outline-secondary" do %>
+      <i class="fas fa-plus fa-2x"></i>
+      <% end %>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-sm-10 offset-1">
+<table class="table md-5">
+ 
  <thead>
-   <tr>
+   <tr class="bg-light">
      <th>商品ID</th>
      <th>商品名</th>
      <th>税抜価格</th>
@@ -15,6 +23,7 @@
      <th colsapn="5"></th>
    </tr>
  </thead>
+ 
  <tbody>
  <% @items.each do |item| %>
  <tr>
@@ -26,9 +35,9 @@
    <td><%= item.price %></td>
    <td><%= item.genre.name %></td>
    <td><% if item.is_active == true %>
-       <p>販売中</p>
+       <p class="text-success">販売中</p>
        <% else %>
-       <p>販売停止中</p>
+       <p class="text-secondary">販売停止中</p>
        <% end %>
    </td>
  </tr>
@@ -37,3 +46,7 @@
  </tbody>
 </table>
 <%= paginate(@items) %>
+   </div>
+  </div>
+</div>
+

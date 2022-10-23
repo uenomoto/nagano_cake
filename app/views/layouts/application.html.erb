@@ -9,31 +9,81 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <header>
-    
+  
+  
+<header class="shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light">
+      
     <%= link_to root_path do %>
-    <h1>LOGO</h1>
+    <h1 class= "header-title">LOGO</h1>
     <% end %>
     
+    <button class="navbar-toggler mx-5" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        
     <% if admin_signed_in? %>
-    <%= link_to "商品一覧", admin_items_path %>
-    <%= link_to "会員一覧", admin_customers_path %>
-    <%= link_to "注文履歴一覧", admin_root_path %>
-    <%= link_to "ジャンル一覧", admin_genres_path %>
-    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+    
+    <li class="nav-item">
+    <%= link_to "商品一覧", admin_items_path,class: "btn btn-outline-secondary mx-4 my-3" %>
+    </li>
+    <li class="nav-item">
+    <%= link_to "会員一覧", admin_customers_path,class: "btn btn-outline-secondary mx-4 my-3" %>
+    </li>
+    <li class="nav-item">
+    <%= link_to "注文履歴一覧", admin_root_path,class: "btn btn-outline-secondary mx-4 my-3" %>
+    </li>
+    <li class="nav-item">
+    <%= link_to "ジャンル一覧", admin_genres_path,class: "btn btn-outline-secondary mx-4 my-3" %>
+    </li>
+    <li class="nav-item">
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: "btn btn-outline-secondary mx-4 my-3" %>
+    </li>
+    
     <% elsif customer_signed_in? %>
-    <%= link_to "マイページ", my_page_path %>
-    <%= link_to "商品一覧", items_path %>
-    <%= link_to "カート", cart_items_path %>
-    <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+    <li class="nav-item active">
+    <span class="nav-link text-dark">ようこそさん</span>
+    </li>
+    <li class="nav-item">
+    <%= link_to "マイページ", my_page_path,class: "btn btn-outline-secondary mx-4 my-3" %>
+    </li>
+    <li class="nav-item">
+    <%= link_to "商品一覧", items_path,class: "btn btn-outline-secondary mx-4 my-3" %>
+    </li>
+    <li class="nav-item">
+    <%= link_to "カート", cart_items_path,class: "btn btn-outline-secondary mx-4 my-3" %>
+    </li>
+    <li class="nav-item">
+    <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: "btn btn-outline-secondary mx-4 my-3" %>
+    </li>
+    
     <% else %>
-    <%= link_to "About", about_path %>
-    <%= link_to "商品一覧", items_path %>
-    <%= link_to "新規登録", new_customer_registration_path %>
-    <%= link_to "ログイン", new_customer_session_path %>
+    
+    <li class="nav-item">
+    <%= link_to "About", about_path,class: "btn btn-outline-secondary mx-4 my-3" %>
+    </li>
+    <li class="nav-item">
+    <%= link_to "商品一覧", items_path,class: "btn btn-outline-secondary mx-4 my-3" %>
+    </li>
+    <li class="nav-item">
+    <%= link_to "新規登録", new_customer_registration_path,class: "btn btn-outline-secondary mx-4 my-3" %>
+    </li>
+    <li class="nav-item">
+    <%= link_to "ログイン", new_customer_session_path,class: "btn btn-outline-secondary mx-4 my-3" %>
+    </li>
     <% end %>
-  </header>
+     </ul>
+    </div>
+  </nav>
+</header>
+  
+  
+  
   <body>
     <%= yield %>
   </body>
+  
+  
 </html>
