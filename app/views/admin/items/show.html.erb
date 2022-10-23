@@ -22,7 +22,7 @@
     <th>税込価格</br>
     　　(税抜価格)
     </th>
-    <td><%= @item.price %> (<%= @item.price %>) 円</td>
+    <td><%= @item.with_tax_price %> (<%= @item.price %>) 円</td>
   </tr>
   
   <tr>

@@ -1,52 +1,79 @@
-<h5>注文履歴詳細</h5>
-
-<table class="table">
+<div class="container">
+ <h5 class="my-5 text-left">注文履歴詳細</h5>
+  <div class="row">
+   <div class="col-md-12">
+    <table class="table table-borderless">
   
-  <tr>
-    <th>購入者</th>
-    <!--%= @order.customer.last_name %>%= @order.customer.first_name %></td>-->
-  </tr>
-  
-  <tr>
-    <th>注文日</th>
-    <td></td>
-  </tr>
-  
-  <tr>
-    <th>配送先</th>
-    <td></td>
-  </tr>
-  
-  <tr>
-    <th>支払方法</th>
-    <td></td>
-  </tr>
-  
-  <tr>
-    <th>注文ステータス</th>
-    <td></td>
-  </tr>
-  
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th>商品名</th>
-      <th>単価（税込）</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th>製作ステータス</th>
+      <th>購入者</th>
+      <!--%= @order.customer.last_name %>%= @order.customer.first_name %></td>-->
     </tr>
-  </thead>
   
-  <tbody>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <th>注文日</th>
       <td></td>
     </tr>
-  </tbody>
-</table>
+  
+    <tr>
+      <th>配送先</th>
+      <td></td>
+    </tr>
+  
+    <tr>
+      <th>支払方法</th>
+      <td></td>
+    </tr>
+  
+    <tr>
+      <th>注文ステータス</th>
+      <td></td>
+    </tr>
+  
+    </table>
+   </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+     <table class="table table-border">
+       <thead>
+         <tr>
+           <th>商品名</th>
+           <th>単価（税込）</th>
+           <th>数量</th>
+           <th>小計</th>
+           <th>製作ステータス</th>
+         </tr>
+       </thead>
+  
+       <tbody>
+         <% @orders.each do |order| %>
+          <tr>
+           <td><%=order.item.name %></td>
+           <td><%= order.item.with_tax_price %></td>
+           <td><%= order.ordered_good.count %></td>
+           <td><%= order.cart_item.subtotal %></td>
+           <td></td>
+         </tr>
+         <% end %>
+        </tbody>
+     </table>
+     <div class="col-md-3 offset-md-1">
+       <table class="table table-borderless">
+         <tr>
+           <th>商品合計</th>
+           <td></td>
+         </tr>
+         <tr>
+           <th>送料</th>
+           <td></td>
+         </tr>
+         <tr>
+           <th>請求金額合計</th>
+           <td></td>
+         </tr>
+       </table>
+     </div>
+
+  </div>
+  </div>
+</div>
