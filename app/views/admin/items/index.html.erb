@@ -1,16 +1,16 @@
 <div class="container">
    <div class="row">
-    <div class="col-sm-8 px-sm-0 offset-sm-1">
-     <h5 class="my-5 bg-light">商品一覧</h5>
-   </div>
-    <div class="col-sm-2 px-sm-0 text-right mt-5">
-      <%= link_to new_admin_item_path,class: "btn btn btn-outline-secondary" do %>
-      <i class="fas fa-plus fa-2x"></i>
-      <% end %>
+     <div class="col-md-2">
+      <h5 style="background-color:#dcdcdc;", class="my-5">商品一覧</h5>
     </div>
-   </div>
+     <div class="col-md-10 text-right mt-5">
+       <%= link_to new_admin_item_path,class: "btn btn btn-outline-secondary" do %>
+       <i class="fa fa-plus-circle"></i>
+       <% end %>
+      </div>
+     </div>
    <div class="row">
-    <div class="col-sm-10 offset-1">
+    <div class="col-md-12">
 <table class="table md-5">
  
  <thead>
@@ -28,7 +28,7 @@
  <% @items.each do |item| %>
  <tr>
    <td><%= item.id %></td>
-   <td><%= link_to admin_item_path(item.id) do %>
+   <td><%= link_to admin_item_path(item.id), class: "text-dark" do %>
    <%= item.name %>
    <% end %>
    </td>

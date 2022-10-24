@@ -1,44 +1,73 @@
-<h3>商品新規登録</h3>
-
+<div class="container">
+   <div class="row">
+    <div class="col-sm-2">
+     <h5 style="background-color:#dcdcdc;", class="my-5">商品新規登録</h5>
+    </div>
+    <div class="col-sm-10"></div>
+  </div>
+  
+  
 <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
 
-<table>
+<div class="row">
+   <div class="col-md-10 mx-auto mb-5">
+    
+ <table class="table table-borderless md-2">
   <tr>
-   <th><label for="item_image">商品画像</label></th>
-   <td><%= f.file_field :image, accept: "image/*" %></td>
+    <div class="form-group">
+     <th><%= f.label :"商品画像" %></th>
+     <td><%= f.file_field :image, accept: "image/*" %></td>
+    </div>
   </tr>
   
   <tr>
-   <th><label for="item_name">商品名</label></th>
-   <td><%= f.text_field :name, placeholder:"商品名" %></td>
+    <div class="form-group">
+     <th><%= f.label :"商品名" %></th>
+     <td><%= f.text_field :name, class: "control-label", size: "30x5", placeholder:"商品名" %></td>
+    </div>
   </tr>
   
   <tr>
-   <th><label for="introduction">商品説明</label></th>
-   <td><%= f.text_area :introduction, size: "20x5", placeholder:"ここに説明文を記述します" %></td>
+    <div class="form-group">
+     <th><%= f.label :"商品説明" %></th>
+     <td><%= f.text_area :introduction, class: "control-label", size: "30x5", placeholder:"ここに説明文を記述します" %></td>
+    </div>
   </tr>
   
   <tr>
-   <th><label for="genre">ジャンル</label></th>
-   <td><%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "--選択してください--" %></td>
+    <div class="form-group">
+     <th><%= f.label :"ジャンル" %></th>
+     <td><%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "--選択してください--" %></td>
+    </div>
   </tr>
   
   <tr>
-   <th><label for="price">税抜価格</label></th>
-   <td><%= f.text_field :price, placeholder:"1000" %>円</td>
+    <div class="form-group">
+     <th><%= f.label :"税抜価格" %></th>
+     <td><%= f.text_field :price, placeholder:"1000", size: "30x5" %> 円</td>
+    </div>
   </tr>
   
   <tr>
-    <th><label for="is_active">販売ステータス</label></th>
-    <td><%= f.radio_button :is_active, true, checked: true %>
-      <label for="is_active">販売中</label>
-      <%= f.radio_button :is_active, false %>
-      <label for="is_active">販売停止中</label>
-    </td>
+     <div class="form-group">
+        <th><%= f.label :"販売ステータス" %></th>
+        <td><%= f.radio_button :is_active, true, checked: true %>
+            <%= f.label :is_active,"販売中" %>
+            <%= f.radio_button :is_active, false %>
+            <%= f.label :is_active,"販売停止中" %>
+        </td>
+    </div>
   </tr>
   
   <tr>
-    <th><%= f.submit "新規登録" %></th>
+    <div class="form-group">
+     <th></th>
+      <th><%= f.submit "新規登録", class: "btn btn-success px-4 ml-5" %></th>
+    </div>
   </tr>
-<% end %>
-</table>
+  
+  <% end %>
+  </table>
+  </div>
+ </div>
+</div>
