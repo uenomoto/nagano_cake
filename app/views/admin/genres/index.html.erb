@@ -1,29 +1,32 @@
-<div class="container">
- <div class="row text-left">
-   <div class="col-md-12 mt-5">
-    <h5>ジャンル一覧・追加</h5>
+<div class="container-fluid">
+ <div class="row">
+  <div class="col-md-1"></div>
+   <div class="col-mx-2 mt-5">
+    <h5 style="background-color:#dcdcdc;">ジャンル一覧・追加</h5>
    </div>
   </div>
-  <div class="row my-5 d-flex justify-content-left">
-   <div class="col-xs-12">
+  
+  <div class="row my-5 d-flex justify-content-start">
+   <div class="col-mx-12">
       <%= form_with model: @genre, url: "/admin/genres" do |f| %>
       
-      <%= f.label :name, "ジャンル名" %>
-      <%= f.text_field :name, placeholder:"ジャンル名" %>
-      <%= f.submit "新規登録", class: "btn btn-success ml-4 py-2" %>
+      <strong><%= f.label :name, "ジャンル名", class: "ml-5" %></strong>
+      <%= f.text_field :name,class: "ml-5", placeholder:"ジャンル名" %>
+      <%= f.submit "新規登録", class: "btn btn-success ml-5 px-4" %>
       
       <% end %>
    </div>
   </div>
   
-  <div class="row my-5 justify-content-left">
-   <div class="col-lg-5 mt-3">
-    <table class="table">
-     <thead>
+  <div class="row my-5">
+   <div class="col-mx-3 mt-3">
+    <table class="table ml-5">
+     <thead style="background-color:#dcdcdc;">
       <tr>
-       <th class="bg-light">ジャンル</th>
-       <th class="bg-light"></th>
-       <th colsapn="2", class="bg-light"></th>
+       <th></th>
+       <th>ジャンル</th>
+       <th></th>
+       <th colsapn="3"></th>
       </tr>
      </thead>
  
@@ -31,8 +34,9 @@
        <% @genres.each do |genre| %>
         <tr>
          <td><%= genre.name %></td>
+         <td></td>
          <td><%= link_to edit_admin_genre_path(genre.id) do %>
-         <span class= "btn btn-success">編集する</span>
+         <span class= "btn btn-success px-4">編集する</span>
          <% end %>
          </td>
         </tr>
