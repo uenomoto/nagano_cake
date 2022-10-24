@@ -1,60 +1,72 @@
-<h2>商品編集</h2>
-
+<div class="container">
+   <div class="row">
+    <div class="col-sm-2">
+     <h5 style="background-color:#dcdcdc;", class="my-5">商品編集</h5>
+    </div>
+    <div class="col-sm-10"></div>
+   </div>
+   
 <%= form_with model: @item, url: admin_item_path, method: :patch do |f| %>
 
-<table>
+<div class="row">
+   <div class="col-md-10 mx-auto mb-5">
+     
+  <table  class="table table-borderless md-2">
   <tr>
-    <div class="image">
-      <th><label for="item_image">商品画像</label></th>
+    <div class="form-group">
+      <th><%= f.label :"商品画像" %></th>
       <td><%= f.file_field :image, accept: "image/*" %></td>
     </div>
   </tr>
   
   <tr>
-    <div class="name">
-      <th><label for="name">商品名</label></th>
-      <td><%= f.text_field :name, id:"name" %></td>
+    <div class="form-group">
+      <th><%= f.label :"商品名" %></th>
+      <td><%= f.text_field :name, class: "control-label", size: "30x5", id:"name" %></td>
     </div>
   </tr>
   
   <tr>
-    <div class="introduction">
-      <th><label for="introduction">商品説明</label></th>
-      <td><%= f.text_area :introduction, size: "20x5", id:"introduction" %></td>
+    <div class="form-group">
+      <th><%= f.label :"商品説明" %></th>
+      <td><%= f.text_area :introduction, class: "control-label", size: "30x5", id:"introduction" %></td>
     </div>
   </tr>
   
   <tr>
-    <div class="genre">
-      <th><label for="genre">ジャンル</label></th>
+    <div class="form-group">
+      <th><%= f.label :"ジャンル" %></th>
       <td><%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "--選択してください--" %></td>
     </div>
   </tr>
   
   <tr>
-    <div class="price">
-      <th><label for="price">税抜価格</label></th>
-      <td><%= f.text_field :price %>円</td>
+    <div class="form-group">
+      <th><%= f.label :"税抜価格" %></th>
+      <td><%= f.text_field :price, size: "30x5" %>円</td>
     </div>
   </tr>
   
   <tr>
-    <div class="is_active">
-      <th><label for="is_active">販売ステータス</label></th>
+    <div class="form-group">
+      <th><%= f.label :"販売ステータス" %></th>
       <td><%= f.radio_button :is_active, true, checked: true %>
-      <label for="is_active">販売中</label>
-      <%= f.radio_button :is_active, false %>
-      <label for="is_active">販売停止中</label>
+          <%= f.label :is_active,"販売中" %>
+          <%= f.radio_button :is_active, false %>
+          <%= f.label :is_active,"販売停止中" %>
       </td>
     </div>
   </tr>
   
   <tr>
-    <div class="submit">
+    <div class="form-group">
       <th></th>
-      <td><%= f.submit "変更を保存" %></td>
+      <td><%= f.submit "変更を保存", class: "btn btn-success px-4 ml-5" %></td>
     </div>
   </tr>
   
   <% end %>
-</table>
+   </table>
+  </div>
+ </div>
+</div>
