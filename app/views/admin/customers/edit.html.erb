@@ -1,7 +1,9 @@
 <div class="container">
-
-  <h5 class="text-left m-5"><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h5>
-  
+ <div class="row">
+   <div class="col-xs-2">
+    <h5 style="background-color:#dcdcdc;", class="my-4"><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h5>
+  </div>
+ </div>
   <%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
    <div class="col-xs-10 offset-1">
   
@@ -51,7 +53,7 @@
      </div>
      
      <div class="form-group col-xs-9 d-flex justify-content-around">
-       <%= f.submit "変更を保存", class: "btn btn-success col-sm-4 control-label" %>
+       <%= f.submit "変更を保存", class: "btn btn-success col-sm-3 control-label mr-5" %>
      </div>
      
    </div>

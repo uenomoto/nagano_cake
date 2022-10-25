@@ -1,11 +1,14 @@
 <div class="container">
-<h2 class="col-md-5  my-3">会員一覧</h2>
-
-<div class="row d-fiex justify-content-center">
-  
+  <div class="row my-3">
+    <div class="col-1"></div>
+   <h5 style="background-color:#dcdcdc;">会員一覧</h5>
+  </div>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-11">
  <table class="table">
   <thead>
-    <tr>
+    <tr class="bg-light">
       <th>会員ID</th>
       <th>氏名</th>
       <th>メールアドレス</th>
@@ -17,16 +20,16 @@
   <tbody>
     <% @customers.each do |customer| %>
     <tr>
-      <td class="info col-xs-1"><%= customer.id %></td>
-      <td class="text-left"><%= link_to admin_customer_path(customer) do %>
+      <td><%= customer.id %></td>
+      <td><%= link_to admin_customer_path(customer), class: "text-dark" do %>
          <%= customer.last_name %><%= customer.first_name %>
         <% end %>
       </td>
       <td><%= customer.email %></td>
       <td><% if customer.is_deleted == true %>
-          <p>退会</p>
+          <strong class="text-secondary">退会</strong>
         <% else %>
-          <p class="text-success">有効</p>
+          <strong class="text-success">有効</strong>
         <% end %>
       </td>
     </tr>
@@ -34,6 +37,7 @@
     
    </tbody>
   </table>
+  </div>
  </div>
  <%= paginate(@customers) %>
 </div>

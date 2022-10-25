@@ -11,7 +11,7 @@
      </div>
    <div class="row">
     <div class="col-md-12">
-<table class="table md-5">
+<table class="table table-borderless md-5">
  
  <thead>
    <tr class="bg-light">
@@ -35,9 +35,9 @@
    <td><%= item.price %></td>
    <td><%= item.genre.name %></td>
    <td><% if item.is_active == true %>
-       <p class="text-success">販売中</p>
+       <strong class="text-success">販売中</strong>
        <% else %>
-       <p class="text-secondary">販売停止中</p>
+       <strong class="text-secondary">販売停止中</strong>
        <% end %>
    </td>
  </tr>

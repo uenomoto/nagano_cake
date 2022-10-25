@@ -1,5 +1,9 @@
-<h5><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h5>
-
+<div class="container">
+  <div class="row">
+   <div class="col-xs-2">
+    <h5 style="background-color:#dcdcdc;", class="my-4"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h5>
+   </div>
+  </div>
 <table class="table table-borderless">
   
   <tr>
@@ -40,9 +44,9 @@
   <tr>
     <th>会員ステータス</th>
     <th><% if @customer.is_deleted == true %>
-     <p>退会</p>
+     <string class="text-secondary">退会</string>
     <% else %>
-     <p class="text-success">有効</p>
+     <string class="text-success">有効</string>
     <% end %>
     </th>
   </tr>
@@ -53,4 +57,5 @@
     <td><%= link_to "注文履歴一覧を見る", admin_root_path, class: "btn btn-primary" %></td>
   </tr>
   
-</table>
+ </table>
+</div>
