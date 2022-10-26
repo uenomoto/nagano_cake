@@ -18,4 +18,9 @@ has_many:addresses, dependent: :destroy
   validates :telephone_number, presence: true
   validates :email, uniqueness: true, presence: true
   
+  #フルネーム
+  def full_name
+    "@customer.last_name"+"@customer.first_name"
+  end
+  
 end

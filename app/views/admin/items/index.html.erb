@@ -40,6 +40,8 @@
        <strong class="text-secondary">販売停止中</strong>
        <% end %>
    </td>
+   <!--完成したら消す↓-->
+   <td><%= link_to "消す", admin_item_path(item.id), method: :delete %></td>
  </tr>
  <% end %>
  

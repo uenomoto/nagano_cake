@@ -33,6 +33,13 @@ class Admin::ItemsController < ApplicationController
     end
   end
   
+  #完成したら消す↓
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to admin_items_path
+  end
+  
   
   private
   
