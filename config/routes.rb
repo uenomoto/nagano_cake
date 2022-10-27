@@ -21,8 +21,8 @@ Rails.application.routes.draw do
     
     get 'customers/my_page' => 'public/customers#show',as: 'my_page'
     get 'customers/information/edit' => 'public/customers#edit',as: 'edit_customers'
-    patch 'customers/information' => 'public/customers#update'
-    get 'customers/unsubscribe' => 'public/customers#unsubscribe'
+    patch 'customers/information' => 'public/customers#update',as: 'customer'
+    get 'customers/unsubscribe' => 'public/customers#unsubscribe',as: 'unsubscribe'
     patch 'customers/withdraw' => 'public/customers#withdraw'
   
     get 'items' => 'public/items#index',as: 'items' 
