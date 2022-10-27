@@ -20,7 +20,7 @@ has_many:addresses, dependent: :destroy
   
   #フルネーム
   def full_name
-    "@customer.last_name"+"@customer.first_name"
+    self.last_name + " " + self.first_name
   end
   
 end
