@@ -18,6 +18,14 @@ class Public::CustomersController < ApplicationController
     end
   end
   
+  def withdraw
+    @customer = current_customer
+    @customer.update(is_deleted: true)
+      reset_session
+      redirect_to root_path
+  end
+  
+  
   private
   
   def customer_params

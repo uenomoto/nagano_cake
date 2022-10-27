@@ -1,1 +1,24 @@
-<h1>顧客退会確認画面</h1>
+<div class="container" style="margin-top: 20vh;">
+  
+  <div class="row">
+    <div class="mx-auto">
+      <h4 class="font-weight-bold">本当に退会しますか？</h4>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="mx-auto mt-4">
+      <p class="h4 text-center">退会すると、会員登録情報や</br>
+      これまでの購入履歴が閲覧できなくなります。</br>
+      退会する場合は、「退会する」をクリックしてください。
+      </p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="mx-auto mt-4">
+      <%= link_to "退会しない", my_page_path, class: "btn btn-primary px-4 mr-3" %>
+      <%= link_to "退会する", withdraw_path, method: :patch, class: "btn btn-danger px-4 ml-3" %>
+    </div>
+  </div>
+</div>
