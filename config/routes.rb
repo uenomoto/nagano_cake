@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     get 'addresses' => 'public/addresses#index',as: 'addresses'
     get 'addresses/:id/edit' => 'public/addresses#edit',as: 'edit_addresses'
     post 'addresses' => 'public/addresses#create',as: 'address'
-    patch 'addresses/:id' => 'public/addresses#update'
+    patch 'addresses/:id' => 'public/addresses#update',as: 'patch_address'
     delete 'addresses/:id' => 'public/addresses#destroy',as: 'destroy_address'
   
     get 'orders/new' => 'public/orders#new',as: 'new_order'
