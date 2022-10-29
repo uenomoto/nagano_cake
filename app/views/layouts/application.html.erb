@@ -44,7 +44,7 @@
     
     <% elsif customer_signed_in? %>
     <li class="nav-item active">
-    <p class="nav-link text-dark">ようこそ、<!--%= full_name(current_customer)%-->さん!</p>
+    <p class="nav-link text-dark">ようこそ、<!--%= last_name(current.customer) %-->さん!</p>
     </li>
     <li class="nav-item">
     <%= link_to "マイページ", my_page_path,class: "btn btn-outline-secondary mx-4 my-3" %>
