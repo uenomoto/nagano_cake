@@ -1,2 +1,29 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="container-fluid">
+  <div class="row m-5">
+    
+    <%= render "genre", genres: @genres %>
+    
+    <div class="col-md-3">
+      <%= image_tag @item.get_image(400,200) %>
+    </div>
+    <div class="col-lg-7">
+      <h3 class="font-weight-bold"><%= @item.name %></h3>
+      <p class="h4"><%= @item.introduction %></p>
+      <br>
+      <br>
+      
+      <% if @item.is_active == true %>
+      
+      <p class="h3">¥ <%= @item.with_tax_price %><span class="h6">(税込)</span></p>
+      <br>
+      <%= form_with model: @cart_item, url: create_cart_path, method: :post do |f| %>
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <%= f.select :amount,*[1..10], prompt: "個数選択" %>
+      <%= f.submit "カートに入れる", class: "btn btn-success ml-5" %>
+      <% end %>
+      <% else %>
+      <h3 class="font-weight-bold text-danger">申し訳ございません販売停止中です</h3>
+      <% end %>
+    </div>
+  </div>
+</div>

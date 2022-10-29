@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     patch 'cart_items/:id' => 'public/cart_items#update'
     delete 'cart_items/:id' => 'public/cart_items#destroy'
     delete 'cart_items/destroy_all' => 'public/cart_items#destroy_all'
-    post 'cart_items' => 'public/cart_items#create'
+    post 'cart_items' => 'public/cart_items#create',as: 'create_cart'
     
     get 'customers/my_page' => 'public/customers#show',as: 'my_page'
     get 'customers/information/edit' => 'public/customers#edit',as: 'edit_customers'
