@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row m-5">
-    <div class="col-lg-3">
+    <div class="col-lg-">
       <h5 style="background-color:#dcdcdc;">ショッピングカート</h5>
     </div>
             <% if @cart_items.present? %>
@@ -21,7 +21,7 @@
           <th>小計</th>
           <th></th>
         </tr>
-        
+        </thead>
         <tbody>
           <% @cart_items.each do |cart_item| %>
           <tr>
@@ -39,7 +39,6 @@
             <% @total_amount += cart_item.subtotal %>
           <% end %>
         </tbody>
-      </thead>
      </table>
     </div>
     
@@ -50,9 +49,9 @@
       <div class="col-lg-6"></div>
       <div class="col-lg-3">
         
-        <table　class="table">
+        <table class="table table-bordered">
           <tr>
-            <th>合計金額</th>
+            <th class="bg-light">合計金額</th>
             <td><%= @total_amount %></td>
           </tr>
         </table>
