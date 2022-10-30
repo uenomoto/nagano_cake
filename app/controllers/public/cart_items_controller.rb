@@ -4,7 +4,7 @@ class Public::CartItemsController < ApplicationController
   def index
     #↓合計金額初期値は０円
     @total_amount = 0
-    @cart_items = CartItem.all
+    @cart_items = CartItem.where(customer:current_customer)
   end
   
   def create
@@ -27,14 +27,14 @@ class Public::CartItemsController < ApplicationController
   end
   
   
-  def destroy
-    @cart_item = CartItem.find(params[:id])
-    @cart_item.destroy
+  def destroy_all
+    @cart_items = current_customer.cart_items.destroy_all
     redirect_to cart_items_path
   end
   
-  def destroy_all
-    current_customer.cart_items.destroy_all
+  def destroy
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy
     redirect_to cart_items_path
   end
   

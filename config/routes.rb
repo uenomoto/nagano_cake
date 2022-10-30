@@ -7,17 +7,17 @@ Rails.application.routes.draw do
     delete 'addresses/:id' => 'public/addresses#destroy',as: 'destroy_address'
   
     get 'orders/new' => 'public/orders#new',as: 'new_order'
-    post 'orders/confirm' => 'public/orders#confirm'
+    post 'orders/confirm' => 'public/orders#confirm',as: 'confirm_orders'
     get 'orders/complete' => 'public/orders#complete'
     get 'orders' => 'public/orders#index',as: 'orders'
-    post 'orders' => 'public/orders#create'
+    post 'orders' => 'public/orders#create',as: 'create_order'
     get 'orders/:id' => 'public/orders#show',as: 'order'
   
     get 'cart_items' => 'public/cart_items#index',as: 'cart_items'
     patch 'cart_items/:id' => 'public/cart_items#update',as: 'cart_item'
     delete 'cart_items/:id' => 'public/cart_items#destroy',as: 'destroy_cart'
-    delete 'cart_items/destroy_all' => 'public/cart_items#destroy_all',as: 'destroy_all_cart_items'
     post 'cart_items' => 'public/cart_items#create',as: 'create_cart'
+    delete 'cart_items/destroy_all' => 'public/cart_items#destroy_all',as: 'destroy_all_cart_items'
     
     get 'customers/my_page' => 'public/customers#show',as: 'my_page'
     get 'customers/information/edit' => 'public/customers#edit',as: 'edit_customers'
