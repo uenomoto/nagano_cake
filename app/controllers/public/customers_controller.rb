@@ -18,6 +18,7 @@ class Public::CustomersController < ApplicationController
     end
   end
   
+  #理論削除
   def withdraw
     @customer = current_customer
     @customer.update(is_deleted: true)

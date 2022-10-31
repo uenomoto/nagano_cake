@@ -16,7 +16,12 @@ class Public::OrdersController < ApplicationController
     @total_amount = 0
     @cart_items = current_customer.cart_items
     
-    @order = Order.new(order_params)
+    #paramsメソッドで直接取得
+    @order = Order.new(
+      customer: current_customer,
+      method_of_payment: params[:order][:method_of_payment])
+      
+      #残りのorder_params取得↓
        #自分の住所
     if params[:order][:select_address] == "0"
       @order.postal_code = current_customer.postal_code
@@ -25,6 +30,7 @@ class Public::OrdersController < ApplicationController
       
       #配送先一覧の住所
     elsif params[:order][:select_address] == "1"
+      #ここで配送先モデルの１つのレコードを取得↓
       @address = Address.find(params[:order][:address_id])
       @order.postal_code = @address.postal_code
       @order.address = @address.address
@@ -35,14 +41,39 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
+      @new_address = "1"
     else
       render :new
     end
     
   end
   
-  
-  
+  def create
+    @order = Order.new(order_params)
+    @order.save
+    
+    #情報入力時新配送先が選ばれたら配送先保存↓
+    if params[:order][:new_address] =="1"
+      current_customer.address.create(address_params)
+    end
+    
+    #注文商品(Order_goods)モデルにカート内商品の情報をもとに保存
+    @cart_items = current_customer.cart_items
+    @cart_items.each do |cart_item|
+      @ordered_goods = OrderedGoods.new
+      @ordered_goods.item_id = cart_item.item_id
+      @ordered_goods.order_id = @order.id
+      @ordered_goods.amount = cart_item.amount
+      @ordered_goods.price = cart_item.item.price * cart_item.amount
+      @ordered_goods.save
+    end
+    
+    #最後にカート内商品を全て削除
+    @cart_items.destroy_all
+    
+    
+    redirect_to complete_path
+  end
   
   
   

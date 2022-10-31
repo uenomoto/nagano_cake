@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   
     get 'orders/new' => 'public/orders#new',as: 'new_order'
     post 'orders/confirm' => 'public/orders#confirm',as: 'confirm_orders'
-    get 'orders/complete' => 'public/orders#complete'
+    get 'orders/complete' => 'public/orders#complete',as: 'complete'
     get 'orders' => 'public/orders#index',as: 'orders'
     post 'orders' => 'public/orders#create',as: 'create_order'
     get 'orders/:id' => 'public/orders#show',as: 'order'
