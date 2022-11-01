@@ -13,11 +13,11 @@ Rails.application.routes.draw do
     post 'orders' => 'public/orders#create',as: 'create_order'
     get 'orders/:id' => 'public/orders#show',as: 'order'
   
-    get 'cart_items' => 'public/cart_items#index',as: 'cart_items'
-    patch 'cart_items/:id' => 'public/cart_items#update',as: 'cart_item'
-    delete 'cart_items/:id' => 'public/cart_items#destroy',as: 'destroy_cart'
-    post 'cart_items' => 'public/cart_items#create',as: 'create_cart'
-    delete 'cart_items/destroy_all' => 'public/cart_items#destroy_all',as: 'destroy_all_cart_items'
+    scope module: :public do
+      resources :cart_items
+      delete :cart_items, to: 'cart_items#destroy_all'
+    end
+    
     
     get 'customers/my_page' => 'public/customers#show',as: 'my_page'
     get 'customers/information/edit' => 'public/customers#edit',as: 'edit_customers'
@@ -34,19 +34,27 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :orders, only: [:show, :update]
   end
+  
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
   end
+  
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update, :new]
-
   end
+  
   namespace :admin do
     resources :items
   end
+  
+  namespace :admin do
+    resources :ordered_goods, only: [:update]
+  end
+  
   namespace :admin do
     get root to: 'homes#top'
   end
+  
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }

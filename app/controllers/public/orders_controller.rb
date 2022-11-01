@@ -16,6 +16,7 @@ class Public::OrdersController < ApplicationController
     @total_amount = 0
     @cart_items = current_customer.cart_items
     
+    
     #paramsメソッドで直接取得
     @order = Order.new(
       customer: current_customer,
@@ -49,7 +50,7 @@ class Public::OrdersController < ApplicationController
   end
   
   def create
-    @order = Order.new(order_params)
+    @order = current_customer.orders.new(order_params)
     @order.save
     
     #情報入力時新配送先が選ばれたら配送先保存↓
@@ -60,12 +61,12 @@ class Public::OrdersController < ApplicationController
     #注文商品(Order_goods)モデルにカート内商品の情報をもとに保存
     @cart_items = current_customer.cart_items
     @cart_items.each do |cart_item|
-      @ordered_goods = OrderedGoods.new
-      @ordered_goods.item_id = cart_item.item_id
-      @ordered_goods.order_id = @order.id
-      @ordered_goods.amount = cart_item.amount
-      @ordered_goods.price = cart_item.item.price * cart_item.amount
-      @ordered_goods.save
+      @ordered_good = OrderedGood.new
+      @ordered_good.item_id = cart_item.item_id
+      @ordered_good.order_id = @order.id
+      @ordered_good.amount = cart_item.amount
+      @ordered_good.tax_included_price = cart_item.item.with_tax_price * cart_item.amount
+      @ordered_good.save
     end
     
     #最後にカート内商品を全て削除
@@ -87,7 +88,7 @@ class Public::OrdersController < ApplicationController
   private
   
   def order_params
-    params.require(:order).permit(:postal_code, :address, :name, :method_of_payment, :billing_amount)
+    params.require(:order).permit(:postal_code, :address, :name, :billing_amount)
   end
   
   def address_params

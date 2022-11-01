@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   
+  
+  #ログイン、ログアウト時のリダイレクト先はここで記述
+  
+  
    protected
    
   def configure_permitted_parameters

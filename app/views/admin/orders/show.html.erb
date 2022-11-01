@@ -6,17 +6,17 @@
    </div>
    
   <div class="row">
-   <div class="col-md-12">
+   <div class="col-md-5">
     <table class="table table-borderless">
   
     <tr>
       <th>購入者</th>
-      <!--%= @order.customer.last_name %>%= @order.customer.first_name %></td>-->
+      <td><%= @customer.full_name %></td>
     </tr>
   
     <tr>
       <th>注文日</th>
-      <td></td>
+      <td><%= @customer.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
     </tr>
   
     <tr>
@@ -52,15 +52,15 @@
        </thead>
   
        <tbody>
-         <% @orders.each do |order| %>
+         <!--% @orders.each do |order| %-->
           <tr>
-           <td><%=order.item.name %></td>
-           <td><%= order.item.with_tax_price %></td>
-           <td><%= order.ordered_good.count %></td>
-           <td><%= order.cart_item.subtotal %></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
            <td></td>
          </tr>
-         <% end %>
+         <!--% end %-->
         </tbody>
      </table>
      <div class="col-md-4 offset-md-1">

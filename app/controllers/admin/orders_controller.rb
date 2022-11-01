@@ -2,8 +2,8 @@ class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
   
   def show
-    #@order = Order.find(params[:id])
-    @orders = Order.all
+    @customer = Customer.find(params[:id])
+    @order = Order.find(params[:id])
   end
   
   def update
@@ -17,7 +17,7 @@ class Admin::OrdersController < ApplicationController
   private
   
   def order_params
-    params.require(:order).permit(:address, :postal_code, :name, :billing_amount, :postage, :method_of_payment, :status)
+    params.require(:order).permit(:address, :postal_code, :name, :billing_amount, :postage, :method_of_payment, :status, :making_status)
   end
   
 end
