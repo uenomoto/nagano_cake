@@ -1,9 +1,10 @@
 class Public::CartItemsController < ApplicationController
-  
+  before_action :authenticate_customer!
   
   def index
     #↓合計金額初期値は０円
     @total_amount = 0
+    #allにするとログインしてる人以外のcart_itemsがショッピングカートに入ってきちゃう where文で指定してあげる
     @cart_items = CartItem.where(customer:current_customer)
   end
   

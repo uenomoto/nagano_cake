@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  
+  before_action :authenticate_customer!
   
   def new
     @customer = current_customer
@@ -7,15 +7,25 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders =Order.where(customer:current_customer)
+    @ordered_goods = OrderedGood.where(customer:current_customer)
   end
 
   def show
+    #@order = Order.find(params[:id])
+    #@ordered_goods = @order.ordered_goods
   end
   
   def confirm
-    @total_amount = 0
     @cart_items = current_customer.cart_items
     
+   #合計金額
+      @total_price =
+       total_price = 0
+       @cart_items.each do |cart_item|
+      total_price += cart_item.subtotal
+      end
+      
     
     #paramsメソッドで直接取得
     @order = Order.new(
@@ -31,7 +41,7 @@ class Public::OrdersController < ApplicationController
       
       #配送先一覧の住所
     elsif params[:order][:select_address] == "1"
-      #ここで配送先モデルの１つのレコードを取得↓
+      #ここで配送先モデルの１つのアドレスIDレコードを取得↓
       @address = Address.find(params[:order][:address_id])
       @order.postal_code = @address.postal_code
       @order.address = @address.address
@@ -50,7 +60,9 @@ class Public::OrdersController < ApplicationController
   end
   
   def create
-    @order = current_customer.orders.new(order_params)
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    params[:order][:billing_amount] = @order.billing_amount
     @order.save
     
     #情報入力時新配送先が選ばれたら配送先保存↓
@@ -78,13 +90,7 @@ class Public::OrdersController < ApplicationController
   
   
   
-  
-  
-  
-  
-  
-  
-  
+
   private
   
   def order_params

@@ -13,5 +13,19 @@ class Order < ApplicationRecord
     800
   end
 
+#合計金額
+  def total_price
+       total_price = 0
+       cart_items.each do |cart_item|
+       total_price += cart_item.subtotal
+      end
+      #返り値（メソッド処理終了、式終了）
+     return total_price
+  end
   
+  
+   #請求金額
+  def billing_amount
+    total_price + postage
+  end
 end
