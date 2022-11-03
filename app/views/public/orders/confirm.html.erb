@@ -1,12 +1,12 @@
 <div class="container-fluid">
-  
+
   <div class="row mt-4 mb-2">
     <div class="col-sm-2"></div>
     <div class="col-sm-">
       <h5 style="background-color:#dcdcdc;">注文情報確認</h5>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-8">
@@ -27,17 +27,17 @@
             <td><%= cart_item.amount %></td>
             <td><%= cart_item.subtotal.to_s(:delimited) %></td>
           </tr>
-            <% @total_price += cart_item.subtotal %>
+            <!--% @total_price += cart_item.subtotal %-->
           <% end %>
         </tbody>
        </table>
      </div>
-     
+
      <div class="col-sm-2">
        <table class="table table-bordered border-dark">
          <tr class="thead-light">
            <th>送料</th>
-           <td><%= @order.postage %></td>
+           <td><%= @order.postage.to_s(:delimited) %></td>
          </tr>
          <tr class="thead-light">
            <th>商品合計</th>
@@ -45,13 +45,13 @@
          </tr>
          <tr class="thead-light">
            <th>請求金額</th>
-           <td><%= (@total_price + @order.postage).to_s(:delimited) %></td>
+           <td><%= @order.billing_amount.to_s(:delimited) %></td>
          </tr>
        </table>
      </div>
-     
+
     </div>
-    
+
     <div class="row">
       <div class="col-sm-1"></div>
       <div class="col-sm-8 mt-3">
@@ -67,7 +67,7 @@
         </table>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-sm-4"></div>
       <div class="col-sm-4 text-center"> <!-- local: true エラーメッセージ関係ある？ -->
@@ -77,6 +77,7 @@
         <%= f.hidden_field :address %>
         <%= f.hidden_field :method_of_payment %>
         <%= f.hidden_field :billing_amount %>
+        <%= f.hidden_field :postage %>
         <%= f.submit "注文を確定する", class: "btn btn-success" %>
         <% end %>
       </div>

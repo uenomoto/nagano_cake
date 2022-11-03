@@ -1,5 +1,5 @@
 <div class="container">
-  
+
   <div class="row m-4">
     <div class="col-md-1"></div>
     <div class="col-md-">
@@ -9,7 +9,7 @@
    　<!--↓orderがあればtrueなければelseの方の条件分岐-->
            <% if @orders.present? %>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
       <table class="table table-bordered">
         <thead class="thead-light">
           <tr>
@@ -25,10 +25,13 @@
           <% @orders.each do |order| %>
           <tr>
             <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-            <td>〒<%= order.postal_code %><%= order.address %><%= order.name %></td>
-            <% order.ordered_goods.each do |ordered_good| %>
+            <td>〒<%= order.postal_code %><br>
+                  <%= order.address %><br>
+                  <%= order.name %>
+            </td>
             <td>
-              <%= ordered_good.item.name %>
+              <% order.ordered_goods.each do |ordered_good| %>
+                <%= ordered_good.item.name %><br>
               <% end %>
             </td>
             <td><%= order.billing_amount.to_s(:delimited) %>円</td>
