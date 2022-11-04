@@ -10,9 +10,14 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.update(status: params[:order][:status])
-    redirect_to admin_order_path(@order.id)
+    redirect_to request.referer
 
-    if @order.status == "入金確認"
+    if @order.status == "入金待ち"
+      @order.ordered_goods.each do |ordered_good|
+        ordered_good.update(making_status: 0)
+      end
+      #注文ステータスが入金確認になると製作ステータス全て製作待ちに更新される
+    elsif @order.status == "入金確認"
       @order.ordered_goods.each do |ordered_good|
         ordered_good.update(making_status: 1)
       end

@@ -68,7 +68,8 @@
            <td><%= ordered_good.amount %></td>
            <td><%= ordered_good.item.with_tax_price * ordered_good.amount %></td>
            <td>
-             <%= form_with model: @ordered_good, url: admin_ordered_good_path, method: :patch do |f| %>
+             <!--製作ステータスの更新フォーム　each文の中にあるためモデルの所は@はつけない-->
+             <%= form_with model: ordered_good, url: admin_ordered_good_path(ordered_good.id), method: :patch do |f| %>
              <%= f.select :making_status,OrderedGood.making_statuses_i18n.invert %>
              <%= f.submit "更新", class: "btn btn-success ml-5" %>
              <% end %>
