@@ -1,6 +1,7 @@
 class Public::HomesController < ApplicationController
   def top
-    @items = Item.all
+    #新着順に並び替える↓
+    @items = Item.all.order(created_at: :desc)
     @genres = Genre.all
   end
 

@@ -12,7 +12,7 @@
    <div class="row">
     <div class="col-md-12">
 <table class="table table-borderless md-5">
- 
+
  <thead>
    <tr class="bg-light">
      <th>商品ID</th>
@@ -23,7 +23,7 @@
      <th colsapn="5"></th>
    </tr>
  </thead>
- 
+
  <tbody>
  <% @items.each do |item| %>
  <tr>
@@ -32,7 +32,7 @@
    <%= item.name %>
    <% end %>
    </td>
-   <td><%= item.price %></td>
+   <td><%= item.price.to_s(:delimited) %></td>
    <td><%= item.genre.name %></td>
    <td><% if item.is_active == true %>
        <strong class="text-success">販売中</strong>
@@ -44,11 +44,10 @@
    <td><%= link_to "消す", admin_item_path(item.id), method: :delete %></td>
  </tr>
  <% end %>
- 
+
  </tbody>
 </table>
-<%= paginate(@items) %>
    </div>
   </div>
+  <%= render "public/items/page", items: @items %>
 </div>
-
