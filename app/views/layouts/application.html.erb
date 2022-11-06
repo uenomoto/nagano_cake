@@ -9,23 +9,23 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  
-  
+
+
 <header class="shadow-sm">
   <nav class="navbar navbar-expand-lg navbar-light">
-      
+
     <%= link_to root_path do %>
     <h1 class="border border-dark text-dark px-5">LOGO</h1>
     <% end %>
-    
+
     <button class="navbar-toggler mx-5" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
       <ul class="navbar-nav">
-        
+
     <% if admin_signed_in? %>
-    
+
     <li class="nav-item">
     <%= link_to "商品一覧", admin_items_path,class: "btn btn-outline-secondary mx-4 my-3" %>
     </li>
@@ -41,7 +41,7 @@
     <li class="nav-item">
     <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: "btn btn-outline-secondary mx-4 my-3" %>
     </li>
-    
+
     <% elsif customer_signed_in? %>
     <li class="nav-item active">
     <p class="nav-link text-dark">ようこそ、<!--%= last_name(current.customer) %-->さん!</p>
@@ -58,9 +58,9 @@
     <li class="nav-item">
     <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: "btn btn-outline-secondary mx-4 my-3" %>
     </li>
-    
+
     <% else %>
-    
+
     <li class="nav-item">
     <%= link_to "About", about_path,class: "btn btn-outline-secondary mx-4 my-3" %>
     </li>
@@ -77,14 +77,15 @@
      </ul>
     </div>
   </nav>
+  <h3 class="notice"><%= notice %></h3>
 </header>
-  
-  
-  
+
+
+
   <body>
     <%= yield %>
   </body>
-  
+
   <footer class="border border-dark fixed-bottom mb-5"></footer>
-  
+
 </html>
