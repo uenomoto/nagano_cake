@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
     get 'items' => 'public/items#index',as: 'items'
     get 'items/:id' => 'public/items#show',as: 'item'
+    get 'type_items/:id' => 'public/items#type_item',as: 'type_items'
 
     get root to: 'public/homes#top'
     get '/about' => 'public/homes#about',as: 'about'

@@ -69,7 +69,7 @@
           <% @ordered_goods.each do |ordered_good| %>
           <tr>
             <td>
-              <%= link_to item_path(@item.id) do %>
+              <%= link_to item_path(ordered_good.item.id) do %>
               <%= ordered_good.item.name %>
               <% end %>
               </td>

@@ -1,11 +1,11 @@
 <div class="container-fuild">
   <div class="row m-5">
-    
+
     <%= render "public/items/genre", genres: @genres %>
-    
+
     <div class="col-xl-5 offset-1 cover-img" style="background-image:url('https://cdn.macaro-ni.jp/image/summary/86/86862/PmFhHfCY31p2O2UkSRHkUJ98FQMSfkIBPiVKboDX.jpeg?p=medium');">
-      
-      <div style= "margin-left:120px;" class="p-5 cover-text text-dark font-weight-bold">
+
+      <div style= "margin-left:130px; margin-top:50px;" class="p-5 cover-text text-dark font-weight-bold">
         <p>
          ようこそ、ながのCAKEへ!<br>
          このサイトは、ケーキ販売のECサイトになります。<br>
@@ -15,16 +15,16 @@
       </div>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-xl-2"></div>
     <div class="col-sm-7 offset-1">
       <h2 class="font-weight-bold">新着商品</h2>
       </br>
-      
+
       <div class="d-flex flex-md-wrap">
         <% @items.first(4).each do |item| %>
-        
+
         <div class="card border-0 ml-2">
           <%= link_to item_path(item.id) do %>
           <%= image_tag item.get_image(300,200) %>
@@ -46,4 +46,3 @@
       </div>
     </div>
    </div>
-   

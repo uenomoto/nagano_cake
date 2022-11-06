@@ -1,0 +1,33 @@
+<div class="container-fuild">
+  <div class="row m-5">
+
+    <%= render "genre", genres: @genres %>
+
+    <div class="col-sm-9">
+       <h3 class="font-weight-bold ml-2">(<%= @genre.name %>)一覧 <span class="h5">(全<%= @items_total.count %>件)</span></h3>
+
+       <div class="d-flex flex-md-wrap">
+        <% @genre.items.first(8).each do |item| %>
+
+        <div class="card border-0 ml-2">
+          <%= link_to item_path(item.id) do %>
+          <%= image_tag item.get_image(300,200) %>
+          <% end %>
+          <div class="card-body">
+           <p class="card-text font-weight-bold"><%= item.name %></p>
+           <p class="card-text font-weight-bold">
+             <% if item.is_active == true %>
+              <p>¥<%= item.price %></p>
+             <% else %>
+              <p class="font-weight-bold text-danger">販売停止中です</p>
+             <% end %>
+           </p>
+          </div>
+        </div>
+          <% end %>
+    </div>
+
+  </div>
+ </div>
+
+</div>
