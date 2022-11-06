@@ -11,7 +11,7 @@ class Public::CartItemsController < ApplicationController
   def create
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.customer_id = current_customer.id
-    #カートの中に存在する商品をfind_byを使って取得
+    #存在するカートアイテム ＝ カートの中に存在する商品をfind_byを使って取得
     @exist_cart_item = CartItem.find_by(item: @cart_item.item)
     #カートの中に商品があれば新しくカートに入れた商品の数量を足す
     if @exist_cart_item.present?
