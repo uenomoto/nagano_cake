@@ -13,6 +13,7 @@ class Public::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @ordered_goods = @order.ordered_goods
+    @item = Item.find_by(params[:id])
     #合計金額　＝　請求額　ー　送料
     @total_price = @order.billing_amount - @order.postage
   end

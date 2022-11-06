@@ -1,8 +1,18 @@
 class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
 
+
+  #顧客ごとの注文履歴一覧
+  def percustomer
+    @order = Order.find(params[:id])
+    @customer = @order.customer
+    @orders = Order.where(customer: @order)
+  end
+
+
   def show
     @order = Order.find(params[:id])
+    @customer = Customer.find(params[:id])
     @ordered_goods = @order.ordered_goods
     @total_price = @order.billing_amount - @order.postage
   end

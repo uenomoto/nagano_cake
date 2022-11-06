@@ -68,7 +68,11 @@
         <tbody>
           <% @ordered_goods.each do |ordered_good| %>
           <tr>
-            <td><%= ordered_good.item.name %></td>
+            <td>
+              <%= link_to item_path(@item.id) do %>
+              <%= ordered_good.item.name %>
+              <% end %>
+              </td>
             <td><%= ordered_good.item.with_tax_price %></td>
             <td><%= ordered_good.amount %></td>
             <td><%= ordered_good.tax_included_price %></td>

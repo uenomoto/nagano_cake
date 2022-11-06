@@ -11,7 +11,11 @@
 
     <tr>
       <th>購入者</th>
-      <td><%= @order.customer.full_name %></td>
+      <td>
+        <%=link_to admin_percustomer_path(@customer.id),class: "text-dark" do %>
+        <%= @order.customer.full_name %>
+        <% end %>
+      </td>
     </tr>
 
     <tr>
