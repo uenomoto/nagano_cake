@@ -80,18 +80,15 @@
   <% if notice %>
   <p class="text-center text-dark bg-success"><%= notice %></p>
   <% end %>
-  
-  <% if alert %>
-  <p class="text-center text-danger"><%= alert %></p>
-  <% end %>
+
+<%= render "layouts/search" %>
+
 </header>
-
-
 
   <body>
     <%= yield %>
   </body>
 
-  <footer class="border border-dark fixed-bottom mb-5"></footer>
+  <footer class="border border-dark fixed-bottom mb-3"></footer>
 
 </html>

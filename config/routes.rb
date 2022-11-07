@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+    get "search" => "public/searches#search",as: 'search'
+
     get 'addresses' => 'public/addresses#index',as: 'addresses'
     get 'addresses/:id/edit' => 'public/addresses#edit',as: 'edit_addresses'
     post 'addresses' => 'public/addresses#create',as: 'address'
@@ -27,10 +29,14 @@ Rails.application.routes.draw do
 
     get 'items' => 'public/items#index',as: 'items'
     get 'items/:id' => 'public/items#show',as: 'item'
-    get 'type_items/:id' => 'public/items#type_item',as: 'type_items'
+    get 'items/type_items/:id' => 'public/items#type_item',as: 'type_items'
 
     get root to: 'public/homes#top'
     get '/about' => 'public/homes#about',as: 'about'
+
+  namespace :admin do
+    get '/search' => 'searches#search'
+  end
 
   namespace :admin do
     resources :orders, only: [:show, :update]
@@ -67,3 +73,4 @@ Rails.application.routes.draw do
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+
