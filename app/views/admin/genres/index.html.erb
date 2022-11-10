@@ -10,6 +10,8 @@
    <div class="col-mx-12">
       <%= form_with model: @genre, url: "/admin/genres" do |f| %>
       
+       <%= render 'layouts/error_messages', model: f.object %> 
+       
       <strong><%= f.label :name, "ジャンル名", class: "ml-5" %></strong>
       <%= f.text_field :name,class: "ml-5", placeholder:"ジャンル名" %>
       <%= f.submit "新規登録", class: "btn btn-success ml-5 px-4" %>

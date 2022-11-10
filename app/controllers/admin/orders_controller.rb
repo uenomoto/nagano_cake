@@ -6,7 +6,6 @@ class Admin::OrdersController < ApplicationController
   def percustomer
     @order = Order.find(params[:id])
     @customer = @order.customer
-    @orders = Order.where(customer: @order)
   end
 
 
