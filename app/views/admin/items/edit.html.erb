@@ -8,6 +8,8 @@
    
 <%= form_with model: @item, url: admin_item_path, method: :patch do |f| %>
 
+  <%= render 'layouts/error_messages', model: f.object %> 
+
 <div class="row">
    <div class="col-md-10 mx-auto mb-5">
      

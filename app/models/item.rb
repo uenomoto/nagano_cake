@@ -27,17 +27,19 @@ end
   (price * 1.1).floor
  end
 
-
+#サーチ機能↓
 def self.search_for(word,method)
     return none if word.blank?
+    #完全一致
      if method == 'perfect'
        Item.where(name: word)
-
+    #前方一致
      elsif method == 'forward'
        Item.where('name LIKE ?', word + '%')
-
+    #後方一致
      elsif method == 'backword'
        Item.where('name LIKE ?', '%' + word)
+    #部分一致
      else
        Item.where('name LIKE ?', '%' + word + '%')
      end

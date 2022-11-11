@@ -11,6 +11,8 @@
   
   <%= form_with model: @order, url: confirm_orders_path, method: :post do |f| %>
   
+   <%= render 'layouts/error_messages', model: f.object %> 
+  
     <div class="form-group">
     <%= f.label "支払方法", class: "font-weight-bold" %>
     <br>

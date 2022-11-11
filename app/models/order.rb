@@ -3,6 +3,14 @@ class Order < ApplicationRecord
   belongs_to :customer
   has_many:ordered_goods, dependent: :destroy
   
+  validates :name, presence: true
+  validates :address, presence: true
+  validates :postal_code,length: {is: 7}
+  validates :customer_id, presence: true
+  validates :billing_amount, presence: true
+  validates :postage, presence: true
+  validates :method_of_payment, presence: true
+  
   
   enum method_of_payment: { credit_card: 0, transfer: 1 }
   

@@ -58,11 +58,14 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
-      @new_address = "1"
-    else
+      @ship = "1"
+      
+      #ちゃんと住所宛名郵便番号あるか確認
+      unless @order.valid? == true
+      @customer = current_customer
       render :new
+      end
     end
-
   end
 
   def create
@@ -72,7 +75,7 @@ class Public::OrdersController < ApplicationController
     @order.save
 
     #情報入力時新配送先が選ばれたら配送先保存↓
-    if params[:order][:new_address] =="1"
+    if params[:order][:ship] =="1"
       current_customer.address.create(address_params)
     end
 

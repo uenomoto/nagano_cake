@@ -11,6 +11,8 @@
     
     <%= form_with model: @address, url: patch_address_path, method: :patch do |f| %>
     
+  　　  <%= render 'layouts/error_messages', model: f.object %> 
+    
     <div class="form-group">
       <%= f.label "郵便番号(ハイフンなし)", class: "mr-5" %>
       <%= f.text_field :postal_code %>

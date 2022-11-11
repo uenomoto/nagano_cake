@@ -8,6 +8,9 @@
  </div>
  
   <%= form_with model: @customer, url: customer_path ,method: :patch do |f| %>
+  
+    <%= render 'layouts/error_messages', model: f.object %> 
+  
    <div class="col-xs-12 offset-1">
   
     <div class="form-group col-xs-9">

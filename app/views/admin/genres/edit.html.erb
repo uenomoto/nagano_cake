@@ -9,6 +9,9 @@
    <div class="row my-3">
      <div class="col-md-12">
       <%= form_with model: @genre,url: admin_genre_path, method: :patch do |f| %>
+      
+      <%= render 'layouts/error_messages', model: f.object %> 
+      
       <div class="form-group my-3">
          <strong><%= f.label :name, "ジャンル名",class: "ml-5" %></strong>
          <%= f.text_field :name, class: "ml-5", autofocus: true, id:"name" %>
