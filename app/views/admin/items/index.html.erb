@@ -20,7 +20,7 @@
      <th>税抜価格</th>
      <th>ジャンル</th>
      <th>ステータス</th>
-     <th colsapn="5"></th>
+     
    </tr>
  </thead>
 
@@ -41,7 +41,7 @@
        <% end %>
    </td>
    <!--完成したら消す↓-->
-   <td><%= link_to "消す", admin_item_path(item.id), method: :delete %></td>
+   <!--%= link_to "消す", admin_item_path(item.id), method: :delete %-->
  </tr>
  <% end %>
 
