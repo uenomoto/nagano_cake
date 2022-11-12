@@ -13,6 +13,7 @@ before_action :authenticate_customer!
   def update
     @customer = current_customer
     if @customer.update(customer_params)
+      flash[:notice]= "マイページ変更しました。"
     redirect_to my_page_path
     else
       render :edit

@@ -1,0 +1,40 @@
+ja:
+  activerecord:
+  #モデル名翻訳
+    models:
+      genre: ジャンル
+      item: 商品
+      customer: 顧客
+      address: 配送先
+      order: 注文
+      #モデルのアトリビュート（カラム）の翻訳
+    attributes:
+      genre:
+        name: お菓子のジャンル名
+      item:
+        genre: ジャンル
+        genre_id: ジャンル
+        name: 商品名
+        introduction: 商品説明文
+        price: 税抜価格
+        image: 画像ファイル
+      customer:
+         last_name: 苗字
+         first_name: 名前
+         last_name_kana: カナ苗字
+         first_name_kana: カナ名前
+         postal_code: 郵便番号
+         address: 住所
+         telephone_number: 電話番号
+         email: メールアドレス
+         password: パスワード
+         password_confirmation: パスワード確認
+      address:
+         name: 宛名
+         address: 住所
+         postal_code: 郵便番号
+      order:
+         name: 宛名
+         address: 住所
+         postal_code: 郵便番号
+         
