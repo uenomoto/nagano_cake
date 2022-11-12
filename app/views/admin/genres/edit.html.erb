@@ -1,0 +1,23 @@
+<div class="container-fluid">
+ <div class="row">
+  <div class="col-md-1"></div>
+   <div class="col-ms-2 mt-4">
+    <h5 style="background-color:#dcdcdc;">ジャンル編集</h5>
+   </div>
+ </div>
+ 
+   <div class="row my-3">
+     <div class="col-md-12">
+      <%= form_with model: @genre,url: admin_genre_path, method: :patch do |f| %>
+      
+      <%= render 'layouts/error_messages', model: f.object %> 
+      
+      <div class="form-group my-3">
+         <strong><%= f.label :name, "ジャンル名",class: "ml-5" %></strong>
+         <%= f.text_field :name, class: "ml-5", autofocus: true, id:"name" %>
+         <%= f.submit "変更を保存", class:"btn btn-success ml-5" %>
+      <% end %>
+      </div>
+     </div>
+   </div>
+</div>

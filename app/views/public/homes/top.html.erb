@@ -1,0 +1,48 @@
+<div class="container-fuild">
+  <div class="row m-5">
+
+    <%= render "public/items/genre", genres: @genres %>
+
+    <div class="col-xl-5 offset-1 cover-img" style="background-image:url('https://cdn.macaro-ni.jp/image/summary/86/86862/PmFhHfCY31p2O2UkSRHkUJ98FQMSfkIBPiVKboDX.jpeg?p=medium');">
+
+      <div style= "margin-left:130px; margin-top:50px;" class="p-5 cover-text text-dark font-weight-bold">
+        <p>
+         ようこそ、ながのCAKEへ!<br>
+         このサイトは、ケーキ販売のECサイトになります。<br>
+         会員でない方も商品の閲覧はできますが、<br>
+         購入には会員登録が必要になります。<br>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-2"></div>
+    <div class="col-sm-7 offset-1">
+      <h2 class="font-weight-bold">新着商品</h2>
+      </br>
+
+      <div class="d-flex flex-md-wrap">
+        <% @items.first(4).each do |item| %>
+
+        <div class="card border-0 ml-2">
+          <%= link_to item_path(item.id) do %>
+          <%= image_tag item.get_image(300,200) %>
+          <% end %>
+          <div class="card-body">
+           <p class="card-text font-weight-bold"><%= item.name %></p>
+           <p class="card-text ">
+             <% if item.is_active == true %>
+              <p>¥<%= item.price %></p>
+             <% else %>
+              <p class="font-weight-bold text-danger">販売停止中です</p>
+             <% end %>
+           </p>
+          </div>
+        </div>
+          <% end %>
+        </div>
+        <div class="text-right"><%= link_to "全ての商品を見る>", items_path %></div>
+      </div>
+    </div>
+   </div>

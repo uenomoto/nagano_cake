@@ -1,0 +1,36 @@
+<div class="container">
+  
+  <div class="row">
+    <div class="col-xl-2">
+       <h5 style="background-color:#dcdcdc;", class="my-4">管理者ログイン</h5>
+    </div>
+  </div>
+  
+       <%= form_with model: @admin, url: admin_session_path do |f| %>
+       <div class="col-sm-7 offset-1">
+         <table class="table table-borderless">
+           
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :メールアドレス, class: "form-label" %></th>
+            <td><%= f.email_field :email, autofocus: true, placeholder:"email", autocomplete: "email", class: "form-control" %></td>
+          </div>
+        </tr>
+        
+         <tr>
+           <div class="form-group">
+              <th><%= f.label :パスワード, class: "form-label" %></th>
+              <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %></td>
+           </div>
+         </tr>
+         
+         <tr>
+            <div class="form-group">
+              <th></th>
+             <td><%= f.submit "ログイン" ,class: "btn btn-primary px-4" %></td>
+            </div>
+         </tr>
+        </table>
+       </div>
+        <% end %>
+</div>

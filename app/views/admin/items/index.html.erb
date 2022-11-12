@@ -1,0 +1,53 @@
+<div class="container">
+   <div class="row">
+     <div class="col-xl-">
+      <h5 style="background-color:#dcdcdc;", class="my-5">商品一覧</h5>
+    </div>
+     <div class="col-md-11 text-right mt-5">
+       <%= link_to new_admin_item_path,class: "btn btn btn-outline-secondary" do %>
+       <i class="fa fa-plus-circle"></i>
+       <% end %>
+      </div>
+     </div>
+   <div class="row">
+    <div class="col-md-12">
+<table class="table table-borderless md-5">
+
+ <thead>
+   <tr class="bg-light">
+     <th>商品ID</th>
+     <th>商品名</th>
+     <th>税抜価格</th>
+     <th>ジャンル</th>
+     <th>ステータス</th>
+     
+   </tr>
+ </thead>
+
+ <tbody>
+ <% @items.each do |item| %>
+ <tr>
+   <td><%= item.id %></td>
+   <td><%= link_to admin_item_path(item.id), class: "text-dark" do %>
+   <%= item.name %>
+   <% end %>
+   </td>
+   <td><%= item.price.to_s(:delimited) %></td>
+   <td><%= item.genre.name %></td>
+   <td><% if item.is_active == true %>
+       <strong class="text-success">販売中</strong>
+       <% else %>
+       <strong class="text-secondary">販売停止中</strong>
+       <% end %>
+   </td>
+   <!--完成したら消す↓-->
+   <!--%= link_to "消す", admin_item_path(item.id), method: :delete %-->
+ </tr>
+ <% end %>
+
+ </tbody>
+</table>
+   </div>
+  </div>
+  <%= render "public/items/page", items: @items %>
+</div>

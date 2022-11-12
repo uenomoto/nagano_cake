@@ -1,0 +1,70 @@
+<div class="container">
+  
+  <div class="row m-4">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-">
+      <h5 style="background-color:#dcdcdc;">注文情報入力</h5>
+    </div>
+  </div>
+  
+<div class="col-sm-12 ml-5">
+  
+  <%= form_with model: @order, url: confirm_orders_path, method: :post do |f| %>
+  
+   <%= render 'layouts/error_messages', model: f.object %> 
+  
+    <div class="form-group">
+    <%= f.label "支払方法", class: "font-weight-bold" %>
+    <br>
+    <%= f.radio_button :method_of_payment, Order.method_of_payments.key(0), checked: true, class: "ml-4" %>
+    <%= f.label :method_of_payment, Order.method_of_payments_i18n[:credit_card] %>
+    <br>
+    <%= f.radio_button :method_of_payment, Order.method_of_payments.key(1), class: "ml-4" %>
+    <%= f.label :method_of_payment, Order.method_of_payments_i18n[:transfer] %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label "お届け先", class: "font-weight-bold" %>
+    <br>
+    <%= f.radio_button :select_address, "0", checked: true, class: "ml-4" %>
+    <%= f.label :select_address, "ご自身の住所" %>
+    <br>
+      <div class="ml-5">
+       〒<%= @customer.postal_code %><%= @customer.address %><br><%= @customer.full_name %>
+      </div>
+   </div>
+    
+    <div class="form-group">
+    <%= f.radio_button :select_address, "1", class: "ml-4" %>
+    <%= f.label :select_address, "登録済住所から選択" %>
+    <br>
+      <div class="ml-5">
+       <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %>
+      </div>
+    </div>
+    
+    <div class="form-group col-sm-12">
+      <%= f.radio_button :select_address, "2", class: "ml-2" %>
+      <%= f.label :select_address, "新しいお届け先" %>
+      <br>
+      <%= f.label :"郵便番号（ハイフンなし）", class: "ml-5" %>
+      <%= f.text_field :postal_code, placeholder:"0000000" %>
+      <br>
+      <%= f.label :"住所", class: "ml-5" %>
+      <%= f.text_field :address, style: "margin-left:160px;", class: "col-sm-4" %>
+      <br>
+      <%= f.label :"宛名", class: "ml-5" %>
+      <%= f.text_field :name, style: "margin-left:160px;" %>
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+       <%= f.submit :"確認画面へ進む", class: "btn btn-primary" %>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+  <% end %>
+</div>
+
+</div>

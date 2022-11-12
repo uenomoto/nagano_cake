@@ -1,0 +1,38 @@
+<% if @model == "item" %>
+
+  <h1 class="text-center text-success my-4">商品検索結果</h1>
+  <div class="container">
+    <table class="table  mb-5">
+        <thread>
+            <tr>
+             <th>商品ID</th>
+             <th>商品名</th>
+             <th>税抜価格</th>
+             <th>ジャンル</th>
+             <th>ステータス</th>
+            </tr>
+         </thread>
+        <tbody>
+         <% @records.each do |item| %>
+         <tr>
+          <td><%= item.id %></td>
+          <td>
+            <%= link_to item_path(item.id) do %>
+            <%= item.name %>
+            <% end %>
+          </td>
+          <td><%= item.price %></td>
+          <td><%= item.genre.name %></td>
+          <td>
+            <% if item.is_active == true %>
+              <p class="text-success ">販売中</p>
+             <% else %>
+              <p class="text-secondary ">販売停止中</p>
+            <% end %>
+          </td>
+         </tr>
+        <% end %>
+        </tbody>
+    </table>
+  </div>
+<% end %>

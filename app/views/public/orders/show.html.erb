@@ -1,0 +1,85 @@
+<div class="container">
+
+  <div class="row m-4">
+    <div class="col-md-1"></div>
+    <div class="col-md-">
+      <h5 style="background-color:#dcdcdc;">注文履歴詳細</h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <p class="font-weight-bold">注文情報</p>
+      <table class="table table-bordered">
+        <tr>
+          <th class="bg-light">注文日</th>
+          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+          <th class="bg-light">配送先</th>
+          <td>
+            〒<%= @order.postal_code %><br>
+            <%= @order.address %><br>
+            <%= @order.name %>
+          </td>
+        </tr>
+        <tr>
+          <th class="bg-light">支払方法</th>
+          <td><%= @order.method_of_payment_i18n %></td>
+        </tr>
+        <tr>
+          <th class="bg-light">ステータス</th>
+          <td><%= @order.status %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-md-4">
+      <p class="font-weight-bold">請求情報</p>
+      <table class="table table-bordered">
+        <tr>
+          <th class="bg-light">商品合計</th>
+          <td><%= @total_price.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <th class="bg-light">配送料</th>
+          <td><%= @order.postage.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <th class="bg-light">ご請求額</th>
+          <td><%= @order.billing_amount.to_s(:delimited) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10">
+      <p class="font-weight-bold">注文内容</p>
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th>商品</th>
+            <th>単価(税込)</th>
+            <th>個数</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @ordered_goods.each do |ordered_good| %>
+          <tr>
+            <td>
+              <%= link_to item_path(ordered_good.item.id) do %>
+              <%= ordered_good.item.name %>
+              <% end %>
+              </td>
+            <td><%= ordered_good.item.with_tax_price %></td>
+            <td><%= ordered_good.amount %></td>
+            <td><%= ordered_good.tax_included_price %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

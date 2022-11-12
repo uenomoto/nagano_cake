@@ -1,0 +1,15 @@
+
+    <div class="col-xl-2">
+     <div class="card border border-dark">
+      <div class="card-body">
+        <h5 class="card-title border border-dark border-top-0 border-left-0 border-right-0 text-center">ジャンル検索</h5>
+        <% genres.each do |genre| %>
+        <ul class="list-unstyled">
+          <li><%= link_to type_items_path(genre.id), class: "text-dark" do %>
+            <%= genre.name %></li>
+            <% end %>
+        </ul>
+        <% end %>
+      </div>
+     </div>
+    </div>

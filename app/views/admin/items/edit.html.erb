@@ -1,0 +1,74 @@
+<div class="container">
+   <div class="row">
+    <div class="col-sm-">
+     <h5 style="background-color:#dcdcdc;", class="my-5">商品編集</h5>
+    </div>
+    <div class="col-sm-10"></div>
+   </div>
+   
+<%= form_with model: @item, url: admin_item_path, method: :patch do |f| %>
+
+  <%= render 'layouts/error_messages', model: f.object %> 
+
+<div class="row">
+   <div class="col-md-10 mx-auto mb-5">
+     
+  <table  class="table table-borderless md-2">
+  <tr>
+    <div class="form-group">
+      <th><%= f.label :"商品画像" %></th>
+      <td><%= f.file_field :image, accept: "image/*" %></td>
+    </div>
+  </tr>
+  
+  <tr>
+    <div class="form-group">
+      <th><%= f.label :"商品名" %></th>
+      <td><%= f.text_field :name, class: "control-label", size: "30x5", id:"name" %></td>
+    </div>
+  </tr>
+  
+  <tr>
+    <div class="form-group">
+      <th><%= f.label :"商品説明" %></th>
+      <td><%= f.text_area :introduction, class: "control-label", size: "30x5", id:"introduction" %></td>
+    </div>
+  </tr>
+  
+  <tr>
+    <div class="form-group">
+      <th><%= f.label :"ジャンル" %></th>
+      <td><%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "--選択してください--" %></td>
+    </div>
+  </tr>
+  
+  <tr>
+    <div class="form-group">
+      <th><%= f.label :"税抜価格" %></th>
+      <td><%= f.text_field :price, size: "30x5" %>円</td>
+    </div>
+  </tr>
+  
+  <tr>
+    <div class="form-group">
+      <th><%= f.label :"販売ステータス" %></th>
+      <td><%= f.radio_button :is_active, true, checked: true %>
+          <%= f.label :is_active,"販売中" %>
+          <%= f.radio_button :is_active, false %>
+          <%= f.label :is_active,"販売停止中" %>
+      </td>
+    </div>
+  </tr>
+  
+  <tr>
+    <div class="form-group">
+      <th></th>
+      <td><%= f.submit "変更を保存", class: "btn btn-success col-sm-3 control-label" %></td>
+    </div>
+  </tr>
+  
+  <% end %>
+   </table>
+  </div>
+ </div>
+</div>
